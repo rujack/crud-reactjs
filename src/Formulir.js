@@ -14,11 +14,11 @@ const Formulir = ({nama,harga,stok,handleChange,handleSubmit,id,isValid}) => {
             </Form.Group>
             <Form.Group controlId="harga">
               <Form.Label>Harga Barang</Form.Label>
-              <Form.Control type="Text" placeholder="harga" name="harga" value={harga} onChange={(event)=>handleChange(event)}/>
+              <Form.Control type="number" placeholder="harga" name="harga" value={harga} onChange={(event)=>handleChange(event)}/>
             </Form.Group>
             <Form.Group controlId="stok">
               <Form.Label>Stok Barang</Form.Label>
-              <Form.Control type="text" placeholder="stok" name="stok" value={stok} onChange={(event)=>handleChange(event)}/>
+              <Form.Control type="number" min={0} placeholder="stok" name="stok" value={stok} onChange={(event)=>handleChange(event)}/>
             </Form.Group>
             <Button variant="primary" type="submit">
               {id ?"Edit" :"Submit"}

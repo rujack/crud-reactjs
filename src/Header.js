@@ -1,23 +1,27 @@
 import React from 'react'
 import { Navbar, Nav } from 'react-bootstrap'
+import {Link} from 'react-router-dom'
 
-export const Header = () => {
+
+export const Header = ({resetValid}) => {
+
     return (
         <div>
           <Navbar expand="xl" bg="dark" variant="dark">
-            <Navbar.Brand href="#home"><h4>Rujack</h4></Navbar.Brand>
-            <Nav defaultActiveKey="#input" as="ul">
+            <Link to="/"><Navbar.Brand><h4>Rujack</h4></Navbar.Brand></Link>
+            <Nav defaultActiveKey="/" as="ul">
                 <Nav.Item as="li">
-                    <Nav.Link href="#home">Home</Nav.Link>
+                    <Link to="/"><Nav.Link href="/">Home</Nav.Link></Link>
                 </Nav.Item>
                 <Nav.Item as="li">
-                    <Nav.Link eventKey="#input">Input</Nav.Link>
+                    <Link to="/input"><Nav.Link href="/input" onClick={(isValid)=>resetValid()}>Input</Nav.Link></Link>
                 </Nav.Item>
                 <Nav.Item as="li">
-                    <Nav.Link eventKey="#eksekusi">Eksekusi</Nav.Link>
+                    <Link to="/eksekusi"><Nav.Link href="/eksekusi" onClick={(isValid)=>resetValid()}>Eksekusi</Nav.Link></Link>
                 </Nav.Item>
             </Nav>
         </Navbar>
         </div>
+   
     )
 }

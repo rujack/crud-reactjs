@@ -3,10 +3,13 @@ import Formulir from './Formulir'
 import {Header} from './Header'
 import Tabel from './Tabel'
 import {Alert} from 'react-bootstrap'
+import {BrowserRouter,Route,Switch} from 'react-router-dom'
+import { Home } from './Home'
+import Eksekusi from './Eksekusi'
 
 
 export default class App extends Component {
-
+  
   constructor(props) {
     super(props)
   
@@ -83,12 +86,10 @@ export default class App extends Component {
         stok:'',
         id:''
       })
-
     }
   }
 
   handleEdit=(id)=>{
-    console.log("ID : " + id)
     const dataDipilih = this.state.datas
     .filter((data)=> data.id === id)
     .map((filterData)=>{
@@ -109,20 +110,39 @@ export default class App extends Component {
       .map((filterData)=>{
         return filterData;
       });
-
+      
       this.setState({
-        isValid: <Alert variant="success">Berhasil di hapus :)</Alert>,
         datas: dataBaru
       })
+  }
+
+  resetValid=(isValid)=>{
+    this.setState({
+      isValid:''
+    });
   }
   
   render(){
         return (
-        <div>
-            <Header/>
+          <BrowserRouter>
+          <div>
+          <Header resetValid={this.resetValid}/>
+            
+            <Switch>
+          <Route exact path="/">
+            <Home/>
+          </Route>
+          <Route path="/input">
             <Formulir {...this.state} handleChange={this.handleChange} handleSubmit={this.handleSubmit}/>
-            <Tabel datas={this.state.datas} handleEdit={this.handleEdit} handleHapus={this.handleHapus}/>
+              <Tabel datas={this.state.datas} handleEdit={this.handleEdit}/>
+          </Route>
+          <Route path="/eksekusi">
+            <Eksekusi datas={this.state.datas}  handleHapus={this.handleHapus}/>
+          </Route>
+        </Switch>
         </div>
+          </BrowserRouter>
+            
         )
     }
   }

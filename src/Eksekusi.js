@@ -1,7 +1,7 @@
 import React from 'react'
 import {Container, Table} from 'react-bootstrap'
 
-const Tabel = ({datas, handleEdit}) => {
+const Eksekusi = ({datas,handleHapus,isValid}) => {
     return (
         <Container>
         <div>
@@ -24,7 +24,7 @@ const Tabel = ({datas, handleEdit}) => {
                             <td>{"Rp. " + data.harga + "-;"}</td>
                             <td>{data.stok + " Unit"}</td>
                             <td>
-                                <button className="btn btn-warning mr-2" onClick={()=> handleEdit(data.id)}>Edit</button>
+                                <button className="btn btn-danger" onClick={()=> handleHapus(data.id)}>Hapus</button>
                             </td>
                             </tr>
                         </tbody>
@@ -36,4 +36,4 @@ const Tabel = ({datas, handleEdit}) => {
     )
 }
 
-export default Tabel
+export default Eksekusi
